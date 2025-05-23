@@ -1,0 +1,35 @@
+﻿@model IEnumerable<QLSV.Models.Student>
+
+<h1>Thông tin Sinh viên lớp k20</h1>
+<table class="table">
+    <tr>
+        <th>STT</th>
+        <th>Tên</th>
+        <th>tuổi</th>
+        <th>Giới Tính</th>
+        <th>Hình ảnh</th>
+    </tr>
+    @foreach (var items in Model)
+    {
+        <tr>
+            <td>@items.Id</td>
+            <td>@items.Name</td>
+            <td>@items.Age</td>
+            @if (items.Gender == true)
+            {
+                <td>Nam</td>
+            }
+            else
+            {
+                <td>Nữ</td>
+            }
+            <td><img src="@items.ImgUrl" height="100" /></td>
+            <td> @Html.ActionLink("Detail", "ListOnlyStudent", new { id = items.Id })</td>
+            <td> @Html.ActionLink("Edit", "EditStudent", new { id = items.Id })</td>
+            <td> @Html.ActionLink("Delete", "DelStudent", new { id = items.Id })</td>
+        </tr>
+    }
+</table>
+<td>
+    @Html.ActionLink("Add", "AddStudent")
+</td>
